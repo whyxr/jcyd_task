@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .test{
+            position: relative;
+            width:500px;
+            height: 500px;
+            border-radius: 50%;
+            background-color: red;
+            margin: 0 auto;
+            background:radial-gradient(ellipse 100px 830px at center center, blue 30%,rgba(255,255,255, 0) 31%), radial-gradient(ellipse 300px 830px at center center, red 30%,rgba(255,255,255, 0) 30%), radial-gradient(ellipse 500px 830px at center center, blue 30%,rgba(255,255,255, 0) 30%), radial-gradient(ellipse 830px 830px at center center, red 30%,rgba(255,255,255, 0) 31%) ;
+            /*,radial-gradient(200% 200% at 0% 100%, rgb(255,180,70) 49%, rgba(255,180,70,0) 50%) 15em 0 / 1em 1em,linear-gradient(90deg, rgb(232,144,0) 50%, rgb(255,180,70) 50%) 14em 1em / 2em 25em,radial-gradient(100% 200% at 50% 0, rgba(255,180,70,0) 0.95em, rgb(255,180,70) 1em, rgb(255,180,70) 1.95em, rgb(232,144,0) 2em, rgb(232,144,0) 2.95em, rgba(232,144,0,0) 3em) 14em 26em / 6em 3em,radial-gradient(200% 200% at 100% 100%, rgb(255,180,70) 49%, rgba(255,180,70,0) 50%) 18em 25em / 1em 1em,radial-gradient(200% 200% at 0% 100%, rgb(232,144,0) 49%, rgba(232,144,0,0) 50%) 19em 25em / 1em 1em*/
+        }
+        .test:before{
+            content:'';
+            position: absolute;
+            width:500px;
+            height:500px;
+            left:0;
+            top:50%;
+            background-color: #fff;
+            /* background:-webkit-linear-gradient(48deg, white 46.5% , rgba(255,255,255, 0)  46.5%), -webkit-linear-gradient(left, rgba(255,255,255, 0) 48% , red 48%, red 52%, rgba(255,255,255, 0) 52%), -webkit-linear-gradient(top, white 50% , rgba(255,255,255, 0) 50% ), radial-gradient(ellipse 100px 100px at 57.5% 50%, white 27.5%, red 27.5%, red 49.5%, white 49.5%); */
+            background:radial-gradient(ellipse 23px 23px at 49.8% 49.8%, red 50%,rgba(255,255,255, 0) 50%), -webkit-linear-gradient(top, rgba(255,255,255, 0) 50% , white 50%), -webkit-linear-gradient(left, white 48% , red 48%, red 52%, white 52%);
+        }
+    </style>
+</head>
+<body>
+    <div class="test"></div>
+</body>
+</html>

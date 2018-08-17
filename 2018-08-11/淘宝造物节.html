@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <title>淘宝造物节</title>
+    <script src="http://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            transform-style: preserve-3d;
+            perspective-origin: 50% 50%;
+            height: 100%;
+            /* animation: test 3s infinite; */
+        }
+
+        #box>div {
+            position: absolute;
+            width: 8.0625rem;
+            height: 73.125rem;
+
+        }
+        @keyframes test{
+            20%{
+                transform: rotateY(45deg);
+            }
+            40%{
+                transform: rotateY(90deg);
+            }
+            60%{
+                transform: rotateY(180deg);
+            }
+            80%{
+                transform: rotateY(270deg);
+            }
+            100%{
+                transform: rotateY(0);
+            }
+        }
+        /* #div{
+            transform-style: preserve-3d;
+            perspective-origin: 50% 50%;
+            margin: 300px auto;
+            position: relative;
+            transform: rotateY(-30deg) rotateX(57deg);
+            width:200px;
+            animation: test 2s infinite;
+        }
+        .div {
+            width: 200px;
+            height: 200px;
+            background-color: #f90;
+            position: absolute;
+        }
+        .div1{
+            background-color: rgb(13, 252, 200);
+            transform: translateZ(100px);
+        }
+        .div2{
+            background-color: #ccc;
+            transform: translateZ(-100px);
+        }
+        .div3{
+            background-color:rgb(255, 0, 149) ;
+            transform:rotateY(90deg) translateZ(100px);
+        }
+        .div4{
+            background-color:rgb(0, 174, 255) ;
+            transform:rotateY(-90deg) translateZ(100px);
+        }
+        .div5{
+            background-color:rgb(255, 94, 0) ;
+            transform:rotateX(90deg) translateZ(100px);
+        }
+        .div6{
+            background-color:rgb(47, 0, 255) ;
+            transform:rotateX(-90deg) translateZ(100px);
+        }
+        @keyframes test{
+            20%{
+                transform: rotateY(-30deg) rotateX(57deg);
+            }
+            40% {
+                transform: rotateY(-60deg) rotateX(80deg);
+            }
+            60% {
+                transform: rotateY(260deg) rotateX(180deg);
+            }
+            100%{
+                transform: rotateY(-30deg) rotateX(57deg);
+            }
+        } */
+
+        .container {
+            margin: 0 auto 0 auto;
+            width: 8.0625rem;
+            perspective: 25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="div">
+        <div class="div div1">A</div>
+        <div class="div div2">B</div>
+        <div class="div div3">C</div>
+        <div class="div div4">D</div>
+        <div class="div div5">E</div>
+        <div class="div div6">F</div>
+    </div> -->
+    <div id="container" class="container">
+        <div id='box'>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+            <div>10</div>
+            <div>11</div>
+            <div>12</div>
+            <div>13</div>
+            <div>14</div>
+            <div>15</div>
+            <div>16</div>
+            <div>17</div>
+            <div>18</div>
+            <div>19</div>
+            <div>20</div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+function calculateRadius(length, totalNum) {
+	return Math.round(length / (2 * Math.tan(Math.PI / totalNum))) - 3;
+}
+var container = document.getElementById('container');
+var box = document.getElementById('box');
+var arr = box.getElementsByTagName('div');
+var radius = calculateRadius(129, 20);
+var audio = document.getElementById('audio');
+
+for (var i = 0; i < arr.length; i++) {
+	arr[i].style.background = 'url("./img/p' + (i + 1) + '.png") no-repeat';
+	arr[i].style.WebkitTransform = "rotateY(" + 360 / arr.length * i + 'deg) translatez(' + radius + 'px)';
+}
+$('#laba').on('tap', function(e) {
+	if (audio.paused) {
+		audio.play();
+		$('#laba').text('🎺');
+	} else {
+		audio.pause();
+		$('#laba').text('⏸');
+	}
+})
+
+var startX = 0,
+	x = 0,
+	endX = 0;
+var flag = true;
+$('#box').on('touchstart', function(event) {
+	event.preventDefault();
+
+	var touch = event.targetTouches[0];
+	startX = touch.pageX - x;
+})
+$('#box').on('touchmove', function(event) {
+	if (flag) {
+		event.preventDefault();
+		var touch = event.targetTouches[0];
+		endX = touch.pageX;
+		x = endX - startX;
+        let deg = x / (2 * radius * Math.PI) * 360;
+        console.log(deg);
+		box.style.transform = 'rotateY(-' + deg + 'deg)';
+	} else {
+		return false;
+	}
+
+})
+$('#box').on('touchend', function(event) {
+	console.log("over");
+});
+
+
+window.addEventListener('deviceorientation', function(event) {
+
+	var gamma = event.gamma;
+	if (Math.abs(gamma) > 1) {
+		flag = false;
+		box.style.transform = 'rotateY(' + gamma * 3 + 'deg)';
+	} else {
+		flag = true;
+	}
+
+})
+</script>
